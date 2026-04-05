@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha seu Design | Beatriz Baptista</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 2rem;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #e6a4b4, #f5d0c5, #d4a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .variant-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+        .variant-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(230,164,180,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .color-bar {
+            height: 8px;
+            display: flex;
+        }
+        .color-bar span { flex: 1; }
+        .preview-area {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .preview-area .mock-nav {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            gap: 6px;
+        }
+        .mock-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+        }
+        .mock-hero {
+            position: absolute;
+            top: 50px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+        }
+        .mock-text-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+        .mock-line {
+            height: 8px;
+            border-radius: 4px;
+        }
+        .mock-line.short { width: 60%; }
+        .mock-line.medium { width: 80%; }
+        .mock-line.btn-mock { width: 40%; height: 16px; border-radius: 8px; margin-top: 6px; }
+        .mock-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-left: 1rem;
+        }
+        .card-info {
+            padding: 1.5rem;
+        }
+        .card-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .card-info p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        .arrow {
+            display: inline-block;
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        .variant-card:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        /* Variant 1 colors */
+        .v1 .color-bar span:nth-child(1) { background: #cba8a8; }
+        .v1 .color-bar span:nth-child(2) { background: #e6dbdb; }
+        .v1 .color-bar span:nth-child(3) { background: #fcf9f5; }
+        .v1 .color-bar span:nth-child(4) { background: #e59a9a; }
+        .v1 .color-bar span:nth-child(5) { background: #4a3f3f; }
+        .v1 .mock-nav { background: rgba(203,168,168,0.15); }
+        .v1 .mock-dot { background: #cba8a8; }
+        .v1 .mock-hero { background: linear-gradient(135deg, #fcf9f5, #e6dbdb); }
+        .v1 .mock-line { background: #cba8a8; }
+        .v1 .mock-line.btn-mock { background: #e59a9a; }
+        .v1 .mock-img { background: #e6dbdb; }
+        .v1 .tag { background: rgba(203,168,168,0.2); color: #cba8a8; }
+
+        /* Variant 2 colors */
+        .v2 .color-bar span:nth-child(1) { background: #7a9e7e; }
+        .v2 .color-bar span:nth-child(2) { background: #c8d8c4; }
+        .v2 .color-bar span:nth-child(3) { background: #f7f5f0; }
+        .v2 .color-bar span:nth-child(4) { background: #5b7f5e; }
+        .v2 .color-bar span:nth-child(5) { background: #3a4a3c; }
+        .v2 .mock-nav { background: rgba(122,158,126,0.15); }
+        .v2 .mock-dot { background: #7a9e7e; }
+        .v2 .mock-hero { background: linear-gradient(135deg, #f7f5f0, #c8d8c4); }
+        .v2 .mock-line { background: #7a9e7e; }
+        .v2 .mock-line.btn-mock { background: #5b7f5e; }
+        .v2 .mock-img { background: #c8d8c4; }
+        .v2 .tag { background: rgba(122,158,126,0.2); color: #7a9e7e; }
+
+        /* Variant 3 colors */
+        .v3 .color-bar span:nth-child(1) { background: #c17853; }
+        .v3 .color-bar span:nth-child(2) { background: #8b7355; }
+        .v3 .color-bar span:nth-child(3) { background: #f5ede3; }
+        .v3 .color-bar span:nth-child(4) { background: #6b7c4e; }
+        .v3 .color-bar span:nth-child(5) { background: #3d2e1e; }
+        .v3 .mock-nav { background: rgba(193,120,83,0.15); }
+        .v3 .mock-dot { background: #c17853; }
+        .v3 .mock-hero { background: linear-gradient(135deg, #f5ede3, #e8d5c0); }
+        .v3 .mock-line { background: #c17853; }
+        .v3 .mock-line.btn-mock { background: #6b7c4e; }
+        .v3 .mock-img { background: #e8d5c0; }
+        .v3 .tag { background: rgba(193,120,83,0.2); color: #c17853; }
+
+        /* Variant 4 colors */
+        .v4 .color-bar span:nth-child(1) { background: #e8705a; }
+        .v4 .color-bar span:nth-child(2) { background: #b88bb4; }
+        .v4 .color-bar span:nth-child(3) { background: #fef6f3; }
+        .v4 .color-bar span:nth-child(4) { background: #f4a261; }
+        .v4 .color-bar span:nth-child(5) { background: #3d2c3e; }
+        .v4 .mock-nav { background: rgba(232,112,90,0.15); }
+        .v4 .mock-dot { background: #e8705a; }
+        .v4 .mock-hero { background: linear-gradient(135deg, #fef6f3, #f5ddd5); }
+        .v4 .mock-line { background: #e8705a; }
+        .v4 .mock-line.btn-mock { background: #b88bb4; }
+        .v4 .mock-img { background: #f5ddd5; }
+        .v4 .tag { background: rgba(232,112,90,0.2); color: #e8705a; }
+
+        /* Variant 5 colors */
+        .v5 .color-bar span:nth-child(1) { background: #c9a96e; }
+        .v5 .color-bar span:nth-child(2) { background: #e6c9ae; }
+        .v5 .color-bar span:nth-child(3) { background: #faf7f2; }
+        .v5 .color-bar span:nth-child(4) { background: #d4a78b; }
+        .v5 .color-bar span:nth-child(5) { background: #2c2c2c; }
+        .v5 .mock-nav { background: rgba(201,169,110,0.15); }
+        .v5 .mock-dot { background: #c9a96e; }
+        .v5 .mock-hero { background: linear-gradient(135deg, #faf7f2, #f0e6d8); }
+        .v5 .mock-line { background: #c9a96e; }
+        .v5 .mock-line.btn-mock { background: #d4a78b; }
+        .v5 .mock-img { background: #f0e6d8; }
+        .v5 .tag { background: rgba(201,169,110,0.2); color: #c9a96e; }
+    </style>
+</head>
+<body>
+    <h1>Escolha seu Design</h1>
+    <p class="subtitle">Clique em cada opção para ver a página completa no navegador</p>
+
+    <div class="grid">
+        <a href="variant1.html" class="variant-card v1">
+            <div class="color-bar"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="preview-area">
+                <div class="mock-nav"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+                <div class="mock-hero">
+                    <div class="mock-text-group">
+                        <div class="mock-line medium"></div>
+                        <div class="mock-line short"></div>
+                        <div class="mock-line btn-mock"></div>
+                    </div>
+                    <div class="mock-img"></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Variante 1: Suave & Acolhedor <span class="arrow">→</span></h3>
+                <p>Rosa pastel, bege quente, tipografia delicada. Um abraço visual que transmite segurança e calma.</p>
+                <span class="tag">Pastel & Maternal</span>
+            </div>
+        </a>
+
+        <a href="variant2.html" class="variant-card v2">
+            <div class="color-bar"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="preview-area">
+                <div class="mock-nav"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+                <div class="mock-hero">
+                    <div class="mock-text-group">
+                        <div class="mock-line medium"></div>
+                        <div class="mock-line short"></div>
+                        <div class="mock-line btn-mock"></div>
+                    </div>
+                    <div class="mock-img"></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Variante 2: Moderno & Profissional <span class="arrow">→</span></h3>
+                <p>Branco clean, verde sálvia, tipografia elegante. Transmite confiança e seriedade clínica.</p>
+                <span class="tag">Clean & Clínico</span>
+            </div>
+        </a>
+
+        <a href="variant3.html" class="variant-card v3">
+            <div class="color-bar"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="preview-area">
+                <div class="mock-nav"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+                <div class="mock-hero">
+                    <div class="mock-text-group">
+                        <div class="mock-line medium"></div>
+                        <div class="mock-line short"></div>
+                        <div class="mock-line btn-mock"></div>
+                    </div>
+                    <div class="mock-img"></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Variante 3: Terroso & Enraizado <span class="arrow">→</span></h3>
+                <p>Terracota, verde oliva, marrons quentes. Conexão com a natureza e o processo orgânico da maternidade.</p>
+                <span class="tag">Terra & Natureza</span>
+            </div>
+        </a>
+
+        <a href="variant4.html" class="variant-card v4">
+            <div class="color-bar"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="preview-area">
+                <div class="mock-nav"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+                <div class="mock-hero">
+                    <div class="mock-text-group">
+                        <div class="mock-line medium"></div>
+                        <div class="mock-line short"></div>
+                        <div class="mock-line btn-mock"></div>
+                    </div>
+                    <div class="mock-img"></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Variante 4: Vibrante & Empoderador <span class="arrow">→</span></h3>
+                <p>Coral quente, lilás suave, tipografia marcante. Energia, força e acolhimento ao mesmo tempo.</p>
+                <span class="tag">Bold & Dinâmico</span>
+            </div>
+        </a>
+
+        <a href="variant5.html" class="variant-card v5">
+            <div class="color-bar"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="preview-area">
+                <div class="mock-nav"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+                <div class="mock-hero">
+                    <div class="mock-text-group">
+                        <div class="mock-line medium"></div>
+                        <div class="mock-line short"></div>
+                        <div class="mock-line btn-mock"></div>
+                    </div>
+                    <div class="mock-img"></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3>Variante 5: Elegante & Sofisticado <span class="arrow">→</span></h3>
+                <p>Dourado suave, blush, tipografia serifada. Premium, luxuoso e sofisticado.</p>
+                <span class="tag">Premium & Luxo</span>
+            </div>
+        </a>
+    </div>
+</body>
+</html>

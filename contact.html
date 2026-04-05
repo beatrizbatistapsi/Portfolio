@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Beatriz Baptista</title>
+    <link rel="stylesheet" href="/src/styles.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--secondary);
+            border-radius: 10px;
+            font-family: inherit;
+            color: var(--text-dark);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .contact-info-block {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .contact-info-block i {
+            color: var(--primary);
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            .contact-layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <i data-feather="heart"></i> Beatriz Baptista
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="about.html">Sobre mim</a></li>
+            <li><a href="services.html">Serviços</a></li>
+            <li><a href="resources.html">Recursos</a></li>
+            <li><a href="contact.html" class="active">Contato</a></li>
+        </ul>
+        <a href="contact.html" class="btn">Agendar Sessão</a>
+    </nav>
+
+    <header class="page-header">
+        <div class="container animate">
+            <h1>Vamos Conversar</h1>
+            <p style="max-width: 600px; margin: 0 auto; font-size: 1.2rem;">Entre em contato para agendar uma primeira sessão, tirar dúvidas sobre o formato online ou saber mais sobre os grupos.</p>
+        </div>
+    </header>
+
+    <main class="container section pt-0" style="padding-top: 0">
+        <div class="contact-layout">
+            <div class="animate">
+                <h2 style="color: var(--primary); margin-bottom: 2rem;">Informações de Contato</h2>
+                
+                <div class="contact-info-block">
+                    <i data-feather="message-circle"></i>
+                    <div>
+                        <h4 style="margin-bottom: 0.2rem">WhatsApp</h4>
+                        <p>+55 (11) 90000-0000<br><span style="font-size:0.9rem">Atendimentos de segunda a sexta, em dias úteis.</span></p>
+                    </div>
+                </div>
+
+                <div class="contact-info-block">
+                    <i data-feather="mail"></i>
+                    <div>
+                        <h4 style="margin-bottom: 0.2rem">Email</h4>
+                        <p>contato@beatrizbaptista.com.br</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-block">
+                    <i data-feather="instagram"></i>
+                    <div>
+                        <h4 style="margin-bottom: 0.2rem">Social</h4>
+                        <p>@psibeatrizbaptista</p>
+                    </div>
+                </div>
+
+                <div style="background-color: var(--secondary); padding: 2rem; border-radius: 15px; margin-top: 3rem;">
+                    <h4 style="margin-bottom: 1rem">Atendimento Online</h4>
+                    <p style="font-size: 0.95rem; margin-bottom: 0;">Ofereço todos os meus atendimentos através de chamadas de vídeo seguras. Isso permite que você realize a sessão de onde estiver, com mais conforto neste período.</p>
+                </div>
+            </div>
+
+            <div class="contact-form animate" style="animation-delay: 0.2s;">
+                <form action="#" method="get">
+                    <div class="form-group">
+                        <label for="name">Seu Nome</label>
+                        <input type="text" id="name" class="form-control" placeholder="Maria da Silva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" class="form-control" placeholder="maria@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefone (WhatsApp)</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="(00) 00000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Sua Mensagem</label>
+                        <textarea id="message" rows="5" class="form-control" placeholder="Conte-me de forma breve como posso ajudar..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content" style="margin-bottom:0">
+            <div>
+                <div class="footer-logo">Beatriz Baptista</div>
+                <p class="footer-text">Psicóloga focada em perinatalidade e maternidade.</p>
+                <p>&copy; 2026 Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script>feather.replace();</script>
+</body>
+</html>
