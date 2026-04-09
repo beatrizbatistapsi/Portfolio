@@ -3,99 +3,583 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beatriz Baptista | Psicologia Perinatal</title>
-    <meta name="description" content="Acolhimento e cuidado psicológico especializado para gestantes, puérperas e mães. Beatriz Baptista, psicóloga perinatal.">
-    <link rel="stylesheet" href="/src/styles.css">
-    <!-- Feather icons for simple elegant svg icons -->
+    <title>Beatriz Batista | Psicologia Perinatal</title>
+    <meta name="description" content="Acolhimento e cuidado psicológico especializado para gestantes, puérperas e mães. Psicóloga clínica e perinatal.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        :root {
+            --primary: #c9a96e; /* Soft Gold */
+            --primary-dark: #b5965b;
+            --accent: #d4a78b; /* Blush */
+            --bg: #faf7f2;
+            --bg-alt: #f5f0e6;
+            --surface: #ffffff;
+            --text: #2c2c2c; /* Charcoal */
+            --text-light: #6b6b6b;
+            --secondary: #e6c9ae;
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+            --shadow-soft: 0 4px 24px rgba(44, 44, 44, 0.06);
+            --shadow-lift: 0 18px 48px rgba(44, 44, 44, 0.09);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+        body { font-family:'Lato',sans-serif; background-color:var(--bg); color:var(--text); overflow-x:hidden; position:relative; isolation:isolate; text-rendering:optimizeLegibility; }
+        ::selection { background:rgba(201, 169, 110, 0.22); color:inherit; }
+        a:focus-visible, button:focus-visible { outline:2px solid var(--primary); outline-offset:3px; }
+        .btn:focus-visible, .wpp-fab:focus-visible { outline-offset:4px; }
+        body::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none; background-image:
+            radial-gradient(ellipse 110% 55% at 50% -12%, rgba(201,169,110,0.09), transparent 52%),
+            radial-gradient(ellipse 50% 42% at 100% 18%, rgba(212,167,139,0.07), transparent 48%),
+            radial-gradient(ellipse 42% 38% at 0% 58%, rgba(201,169,110,0.05), transparent 46%),
+            linear-gradient(165deg, #faf7f2 0%, #f9f5ee 45%, #faf7f2 100%);
+        }
+        body::after { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:0.35; background-image:repeating-linear-gradient(118deg, transparent, transparent 14px, rgba(201,169,110,0.04) 14px, rgba(201,169,110,0.04) 15px); }
+        h1,h2,h3 { font-family:'Playfair Display',serif; font-weight:400; }
+
+        nav { display:flex; justify-content:space-between; align-items:center; gap:clamp(0.75rem,2vw,2rem); padding:1.5rem clamp(4%,5vw,6%); background:linear-gradient(180deg,rgba(255,255,255,0.72) 0%,rgba(250,247,242,0.92) 100%); backdrop-filter:blur(12px) saturate(1.1); -webkit-backdrop-filter:blur(12px) saturate(1.1); position:sticky; top:0; z-index:999; border-bottom:1px solid rgba(201,169,110,0.14); box-shadow:0 10px 40px rgba(58,48,44,0.04); min-width:0; }
+        .nav-start { display:flex; align-items:center; gap:0.65rem; min-width:0; flex-shrink:1; }
+        .nav-menu-toggle { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:2.5rem; height:2.5rem; padding:0; border:1px solid rgba(201,169,110,0.45); border-radius:10px; background:var(--surface); color:var(--text); cursor:pointer; transition:background 0.25s,border-color 0.25s,color 0.25s; }
+        .nav-menu-toggle:hover { background:rgba(201,169,110,0.12); border-color:var(--primary); color:var(--text); }
+        .nav-menu-toggle .feather { width:1.25rem; height:1.25rem; }
+        .nav-menu-toggle .icon-close { display:none; }
+        .nav-menu-toggle[aria-expanded="true"] .icon-menu { display:none; }
+        .nav-menu-toggle[aria-expanded="true"] .icon-close { display:block; }
+        .nav-menu-backdrop { position:fixed; inset:0; background:rgba(44,44,44,0.4); z-index:1000; opacity:0; visibility:hidden; pointer-events:none; transition:opacity 0.3s ease,visibility 0.3s ease; }
+        .nav-menu-backdrop.is-open { opacity:1; visibility:visible; pointer-events:auto; }
+        .nav-menu-panel { position:fixed; top:0; left:0; height:100vh; width:min(18rem,88vw); z-index:1001; background:var(--surface); box-shadow:8px 0 40px rgba(0,0,0,0.1); padding:1.25rem 0 1.5rem; transform:translateX(-100%); transition:transform 0.32s ease; display:flex; flex-direction:column; }
+        .nav-menu-panel.is-open { transform:translateX(0); }
+        .nav-menu-panel-head { display:flex; align-items:center; justify-content:space-between; padding:0 1.25rem 1rem; border-bottom:1px solid rgba(44,44,44,0.08); margin-bottom:0.5rem; }
+        .nav-menu-panel-head span { font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--text); }
+        .nav-menu-close { display:flex; align-items:center; justify-content:center; width:2.25rem; height:2.25rem; border:none; background:transparent; color:var(--text-light); cursor:pointer; border-radius:8px; }
+        .nav-menu-close:hover { background:rgba(201,169,110,0.15); color:var(--text); }
+        .nav-menu-close .feather { width:1.35rem; height:1.35rem; }
+        .nav-menu-list { list-style:none; margin:0; padding:0.25rem 0; }
+        .nav-menu-list a { display:block; padding:0.85rem 1.5rem; font-family:'Lato',sans-serif; font-size:0.92rem; font-weight:600; text-transform:uppercase; letter-spacing:1.2px; color:var(--text-light); text-decoration:none; transition:background 0.2s,color 0.2s; border-left:3px solid transparent; }
+        .nav-menu-list a:hover, .nav-menu-list a:focus-visible { background:rgba(201,169,110,0.1); color:var(--text); border-left-color:var(--primary); }
+        body.menu-open { overflow:hidden; }
+        body.menu-open .nav-start { position:relative; z-index:1002; }
+        section[id], #contato, #inicio { scroll-margin-top:5.5rem; }
+        html { scroll-behavior:smooth; }
+        .logo { font-family:'Playfair Display',serif; color:var(--text); text-decoration:none; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-width:0; flex:0 1 auto; max-width:100%; }
+        .logo-name { font-size:clamp(1.2rem,1.1vw + 0.95rem,1.65rem); letter-spacing:0.02em; line-height:1.15; }
+        .logo-tagline { font-family:'Lato',sans-serif; font-size:clamp(0.58rem,0.35vw + 0.52rem,0.78rem); font-weight:700; text-transform:uppercase; letter-spacing:clamp(0.35px,0.15vw + 0.25px,2px); color:var(--primary); margin-top:0.35em; line-height:1.25; text-wrap:balance; max-width:100%; }
+        .nav-links { display:flex; gap:clamp(0.65rem,1.8vw,3rem); list-style:none; margin:0; padding:0; flex-shrink:1; min-width:0; align-items:center; }
+        .nav-links a { color:var(--text-light); font-weight:500; text-decoration:none; font-size:clamp(0.72rem,0.35vw + 0.68rem,0.88rem); text-transform:uppercase; letter-spacing:clamp(0.6px,0.12vw + 0.45px,1.6px); transition:color 0.35s var(--ease-out); position:relative; white-space:nowrap; }
+        .nav-links a::after { content:''; position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); width:0; height:2px; border-radius:1px; background:linear-gradient(90deg, var(--primary-dark), var(--primary)); transition:width 0.4s var(--ease-out); }
+        .nav-links a:hover, .nav-links a.active { color:var(--text); }
+        .nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+        
+        .btn { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; padding:1rem 2.5rem; background:var(--primary); color:#fff; text-decoration:none; transition:all 0.4s; border:none; font-family:'Lato',sans-serif; font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; cursor:pointer; position:relative; overflow:hidden; }
+        .btn::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); transition:left 0.7s; }
+        .btn:hover { background:var(--primary-dark); }
+        .btn:hover::before { left:100%; }
+        
+        nav .btn-wpp { flex-shrink:0; white-space:nowrap; padding:clamp(0.55rem,0.5vw + 0.45rem,1rem) clamp(0.85rem,1.2vw + 0.5rem,2rem); font-size:clamp(0.65rem,0.25vw + 0.58rem,0.85rem) !important; letter-spacing:clamp(0.5px,0.08vw + 0.3px,2px) !important; }
+        .btn-wpp { background:linear-gradient(165deg, #2dd36f 0%, #25D366 45%, #1ebe5a 100%); color:#fff !important; border-radius:30px; border:none; padding:1rem 2rem; box-shadow:0 6px 22px rgba(37, 211, 102, 0.28), 0 1px 0 rgba(255,255,255,0.2) inset; transition:transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), filter 0.3s; }
+        .btn-wpp:hover { background:linear-gradient(165deg, #30d975 0%, #22c55e 100%); box-shadow:0 12px 32px rgba(37, 211, 102, 0.38); transform:translateY(-2px); filter:saturate(1.05); }
+        .btn-wpp .icon-wpp { width: 1.15em; height: 1.15em; flex-shrink: 0; display: block; }
+
+        /* Hero — contentor full-bleed com camadas de fundo (tema dourado suave) */
+        .hero-shell { position:relative; isolation:isolate; overflow:hidden; padding:clamp(2.25rem,5vw,3.75rem) 0 clamp(2.5rem,6vw,4rem); background:linear-gradient(168deg, #fdfbf7 0%, #faf7f2 38%, #f7f2ea 72%, #f5efe6 100%); }
+        .hero-shell::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:0; background:
+            radial-gradient(ellipse 90% 70% at 12% 25%, rgba(201,169,110,0.11), transparent 58%),
+            radial-gradient(ellipse 65% 55% at 88% 70%, rgba(212,167,139,0.08), transparent 52%),
+            radial-gradient(ellipse 50% 40% at 48% 95%, rgba(230,201,174,0.12), transparent 55%),
+            radial-gradient(ellipse 35% 30% at 75% 15%, rgba(255,255,255,0.45), transparent 65%); }
+        .hero-shell::after { content:''; position:absolute; inset:0; pointer-events:none; z-index:0; opacity:0.5; background-image:
+            repeating-linear-gradient(122deg, transparent, transparent 22px, rgba(201,169,110,0.028) 22px, rgba(201,169,110,0.028) 23px),
+            repeating-linear-gradient(38deg, transparent, transparent 32px, rgba(44,44,44,0.012) 32px, rgba(44,44,44,0.012) 33px); }
+        .hero-ornament { position:absolute; pointer-events:none; z-index:0; border:1px solid rgba(201,169,110,0.14); border-radius:50%; }
+        .hero-ornament--1 { width:min(42vw, 520px); height:min(42vw, 520px); top:-18%; right:-8%; background:radial-gradient(circle at 35% 40%, rgba(201,169,110,0.06), transparent 62%); }
+        .hero-ornament--2 { width:min(28vw, 320px); height:min(28vw, 320px); bottom:5%; left:-6%; background:radial-gradient(circle at 60% 55%, rgba(212,167,139,0.05), transparent 65%); opacity:0.9; }
+        /* Hero: minmax(0,…) lets the text column shrink so lines wrap evenly; no fixed <br> jagged breaks */
+        .hero-split { min-height:min(78vh, 52rem); display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); align-items:center; padding:0 5%; gap:clamp(1.5rem,4vw,4rem); max-width:1300px; margin:0 auto; position:relative; z-index:1; }
+        .hero-text { min-width:0; max-width:100%; position:relative; z-index:1; }
+        .hero-title { font-size:clamp(1.85rem,2.8vw + 1rem,3.65rem); line-height:1.06; margin-bottom:1rem; color:var(--text); animation:fadeInUp 1s ease; font-weight:400; text-wrap:balance; }
+        .hero-title-main { display:block; text-wrap:balance; line-height:1.06; }
+        .hero-title-accent { display:block; font-weight:700; font-size:1.06em; letter-spacing:0.03em; line-height:1.02; margin-top:0.06em; }
+        .hero-title i { font-style:italic; color:var(--primary); }
+        .hero-text p { font-size:clamp(1.08rem,0.45vw + 0.95rem,1.38rem); color:#4a4a4a; margin-bottom:2.25rem; font-weight:400; line-height:1.42; letter-spacing:0.015em; animation:fadeInUp 1s ease 0.2s both; text-wrap:pretty; max-width:36ch; }
+        /* Organic “amoeba” frame — multi-lobe SVG clip (inspired by fluid blob layouts) */
+        .hero-image { height:600px; background:linear-gradient(145deg, var(--secondary), #f0dcc8); border-radius:0; clip-path:url(#hero-photo-blob); -webkit-clip-path:url(#hero-photo-blob); display:flex; align-items:center; justify-content:center; color:var(--text-light); animation:fadeIn 1.5s ease 0.4s both; position:relative; z-index:1; overflow:hidden; filter:drop-shadow(0 18px 36px rgba(58,48,44,0.1)) drop-shadow(0 0 0 0.5px rgba(201,169,110,0.15)); }
+        .hero-image img { display:block; }
+        
+        /* Transições — só rampas de cor (sem curva); cores coladas a --bg / --bg-alt */
+        .section-wave { display:block; width:100%; overflow:hidden; line-height:0; margin-top:-1px; position:relative; z-index:1; }
+        .section-wave--soft svg { display:block; width:100%; height:clamp(64px, 11vw, 120px); vertical-align:middle; }
+        .section-wave--to-dark svg { display:block; width:100%; height:clamp(96px, 14vw, 168px); vertical-align:middle; }
+        .section-wave .wave-shadow { filter:none; }
+
+        .section.section--wave-next { padding-top:clamp(3rem, 5vw, 4.25rem); }
+
+        .section { padding:clamp(4.5rem, 8vw, 6.5rem) clamp(4%, 5vw, 6%); position:relative; }
+        #para-quem { background:var(--bg-alt); padding-top:clamp(2rem, 3.5vw, 2.75rem); }
+        #para-quem::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 70% 45% at 50% 0%, rgba(201,169,110,0.06), transparent 58%); z-index:0; }
+        #para-quem .section-header, #para-quem .cards-grid5 { position:relative; z-index:1; }
+        #terapia { background:var(--bg); }
+        #terapia::before { content:''; position:absolute; top:0; left:0; right:0; height:min(6rem, 18vh); pointer-events:none; background:linear-gradient(180deg, rgba(201,169,110,0.035), transparent 92%); z-index:0; }
+        #terapia .section-header, #terapia .services-grid { position:relative; z-index:1; }
+        #eu-ajudo { background:var(--bg-alt); }
+        #eu-ajudo::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:0; background:radial-gradient(ellipse 60% 45% at 12% 15%, rgba(201,169,110,0.055), transparent 58%), radial-gradient(ellipse 45% 35% at 95% 85%, rgba(255,255,255,0.06), transparent 55%); }
+        #eu-ajudo .section-header, #eu-ajudo .help-split, #eu-ajudo .help-cta { position:relative; z-index:1; }
+        .help-cta { text-align:center; margin-top:4rem; }
+        .section-header { text-align:center; margin-bottom:clamp(2.75rem, 5vw, 4rem); }
+        .section-header span { display:block; font-size:0.85rem; text-transform:uppercase; letter-spacing:3px; color:var(--primary); margin-bottom:1rem; font-family:'Lato',sans-serif; font-weight:700; }
+        .section-header--narrow { max-width:46rem; margin-left:auto; margin-right:auto; margin-bottom:3.5rem; }
+        .section-header--left { text-align:left; }
+        .section-heading { font-family:'Playfair Display',serif; font-size:clamp(2.35rem,3.2vw + 1rem,3.85rem); font-weight:500; line-height:1.08; color:var(--text); margin:0 0 0.85rem; text-wrap:balance; letter-spacing:0.06em; text-transform:uppercase; font-variant-numeric:lining-nums; font-feature-settings:'kern' 1, 'liga' 1; }
+        .section-header:not(.section-header--left) .section-heading::after { content:''; display:block; width:3.25rem; height:2px; margin:1rem auto 0; border-radius:2px; background:linear-gradient(90deg, transparent, rgba(201,169,110,0.55), var(--primary), rgba(201,169,110,0.55), transparent); opacity:0.85; }
+        .section-header--left .section-heading::after { content:''; display:block; width:3rem; height:2px; margin:0.85rem 0 0; border-radius:2px; background:linear-gradient(90deg, var(--primary), rgba(201,169,110,0.35)); opacity:0.9; }
+        #quem-sou .section-header--left .section-heading::after { background:linear-gradient(90deg, var(--primary), rgba(201,169,110,0.25)); }
+        .section-heading:last-child { margin-bottom:0; }
+        .section-lede { font-family:'Lato',sans-serif; font-size:clamp(1rem,0.55vw + 0.85rem,1.22rem); font-weight:400; line-height:1.45; color:var(--text-light); margin:0; letter-spacing:0.03em; max-width:36em; margin-inline:auto; }
+        .section-lede i { font-family:'Playfair Display',serif; font-style:italic; font-size:1.12em; color:var(--primary); }
+        #quem-sou { background:linear-gradient(180deg, #3c3430 0%, #3a302c min(16%, 4rem), #3a302c max(84%, calc(100% - 5rem)), #3e3632 100%) !important; box-shadow:inset 0 1px 0 rgba(201,169,110,0.1); }
+        #quem-sou::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,169,110,0.11), transparent 52%), radial-gradient(ellipse 50% 40% at 100% 100%, rgba(0,0,0,0.18), transparent 55%); z-index:0; }
+        #quem-sou .about-split { position:relative; z-index:1; }
+        #quem-sou .section-heading { color:#fff; }
+        #quem-sou .section-header { margin-bottom:2.5rem; }
+
+        .section-wave--between { margin-top:-1px; position:relative; z-index:1; }
+        .section-wave--to-dark { margin-top:-1px; margin-bottom:-1px; position:relative; z-index:1; overflow:hidden; }
+
+        .cards-grid5 { display:flex; flex-wrap:wrap; gap:clamp(1.25rem,2vw,1.75rem); justify-content:center; max-width:1200px; margin:0 auto; }
+        .card-box { position:relative; background:linear-gradient(158deg,var(--surface) 0%,rgba(255,255,255,0.98) 48%,rgba(252,249,244,0.92) 100%); padding:2.5rem 2rem 2.85rem; border-radius:8px 24px 24px 24px; flex:1 1 280px; max-width:100%; text-align:center; border:1px solid rgba(201,169,110,0.16); box-shadow:var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,0.95); transition:transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.4s; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; min-height:200px; overflow:hidden; }
+        .card-box::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--primary-dark),var(--primary) 40%,var(--accent) 100%); opacity:0.92; }
+        .card-box::after { content:''; position:absolute; top:-40%; right:-25%; width:140px; height:140px; border-radius:50%; background:radial-gradient(circle,rgba(201,169,110,0.09) 0%,transparent 70%); pointer-events:none; }
+        .card-box:hover { transform:translateY(-6px); box-shadow:var(--shadow-lift), 0 0 0 1px rgba(201,169,110,0.18); border-color:rgba(201,169,110,0.28); }
+        .card-box-icon { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1.15rem; background:linear-gradient(145deg,rgba(201,169,110,0.14),rgba(212,167,139,0.08)); border:1px solid rgba(201,169,110,0.22); color:var(--primary-dark); flex-shrink:0; }
+        .card-box-icon .feather { width:22px; height:22px; stroke-width:1.75; }
+        .card-box-icon .card-icon-svg { width:24px; height:24px; flex-shrink:0; }
+        .card-box p { font-size:1.06rem; color:var(--text); font-weight:400; line-height:1.68; font-family:'Lato',sans-serif; position:relative; z-index:1; max-width:28ch; margin:0; letter-spacing:0.01em; }
+        .card-box p b { font-weight:700; color:var(--text); }
+        
+        .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:linear-gradient(180deg, rgba(201,169,110,0.12), rgba(44,44,44,0.06)); max-width:1200px; margin:0 auto; border-radius:14px; overflow:hidden; box-shadow:var(--shadow-soft), 0 0 0 1px rgba(201,169,110,0.08); }
+        .service-card { background:rgba(250,247,242,0.85); padding:clamp(3rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem); text-align:center; transition:background 0.45s var(--ease-out); }
+        .service-card:hover { background:var(--surface); }
+        .service-card .icon { width:42px; height:42px; margin:0 auto 1.75rem; color:var(--primary); opacity:0.95; }
+        .service-card h3 { font-size:clamp(1.15rem, 0.5vw + 1rem, 1.4rem); margin-bottom:0.85rem; text-transform:uppercase; letter-spacing:0.14em; font-family:'Lato',sans-serif; font-weight:700; color:var(--text); }
+        .service-card p { color:var(--text-light); font-size:0.96rem; line-height:1.82; margin-bottom:0; font-weight:300; max-width:26ch; margin-inline:auto; }
+
+        .help-split { display:grid; grid-template-columns:1fr 400px 1fr; gap:clamp(1.5rem,2.5vw,2.25rem); align-items:center; max-width:1200px; margin:0 auto; }
+        .help-list { display:flex; flex-direction:column; gap:clamp(0.85rem,1.5vw,1.15rem); }
+        .help-card { position:relative; display:block; margin:0; padding:1.4rem 1.45rem 1.5rem; border-radius:8px 22px 22px 22px; background:linear-gradient(154deg,var(--surface) 0%,rgba(255,255,255,0.97) 45%,rgba(252,249,244,0.9) 100%); border:1px solid rgba(201,169,110,0.18); box-shadow:var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,0.94); overflow:hidden; transition:transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out), border-color 0.35s; }
+        .help-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--primary-dark),var(--primary) 45%,var(--accent) 100%); opacity:0.92; }
+        .help-card::after { content:''; position:absolute; top:-35%; width:100px; height:100px; border-radius:50%; background:radial-gradient(circle,rgba(201,169,110,0.1) 0%,transparent 68%); pointer-events:none; }
+        .help-list.text-left .help-card::after { right:-20%; }
+        .help-list.text-right .help-card::after { left:-20%; }
+        .help-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lift), inset 0 1px 0 rgba(255,255,255,0.98); border-color:rgba(201,169,110,0.28); }
+        .help-card-text { font-size:1.05rem; line-height:1.55; color:var(--text); margin:0; position:relative; z-index:1; }
+        .help-card-text b { font-weight:700; color:var(--text); }
+        .help-list.text-right .help-card { text-align:right; }
+        .help-list.text-left .help-card { text-align:left; }
+        .help-image { position:relative; height:550px; width:100%; max-width:400px; margin:0 auto; border-radius:200px 200px 0 0; overflow:hidden; background:linear-gradient(165deg, var(--bg-alt), #ebe3d6); box-shadow:0 24px 56px rgba(44,44,44,0.08), 0 0 0 1px rgba(201,169,110,0.1); }
+        .help-image img { width:100%; height:100%; object-fit:cover; object-position:center 18%; display:block; }
+
+        .about-split { display:flex; align-items:center; max-width:1200px; margin:0 auto; gap:4rem; }
+        .about-content { flex:1; padding:3rem 0; }
+        .about-list { list-style:none; margin-bottom:2.5rem; }
+        .about-list li { display:flex; align-items:flex-start; gap:0.85rem; margin-bottom:1.2rem; font-size:1.05rem; line-height:1.6; color:rgba(255,255,255,0.9); }
+        .about-list li > span:last-child { flex:1; min-width:0; }
+        .about-icon { flex-shrink:0; width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; margin-top:0.12em; border-radius:50%; background:rgba(201,169,110,0.12); border:1px solid rgba(201,169,110,0.28); color:var(--primary); }
+        .about-icon .feather { width:20px; height:20px; stroke-width:1.75; }
+        .about-text-p { display:flex; align-items:flex-start; gap:0.85rem; color:rgba(255,255,255,0.85); font-size:1.1rem; line-height:1.8; font-weight:300; margin-bottom:1.5rem; }
+        .about-text-p .about-icon { margin-top:0.14em; }
+        .about-text-p-inner { flex:1; min-width:0; }
+        .about-media { width:450px; height:450px; border-radius:50%; flex:none; background:#2a2420; overflow:hidden; box-shadow:0 20px 56px rgba(0,0,0,0.38), 0 0 0 1px rgba(201,169,110,0.18), inset 0 2px 24px rgba(255,255,255,0.04); }
+        .about-media img { width:100%; height:100%; object-fit:cover; object-position:center 44%; display:block; }
+
+        /* CTA — rampa longa do escuro para o bege (sem faixa óbvia) */
+        .cta-section { background:linear-gradient(180deg, #e8e2da 0%, #ede8e0 14%, #f2ebe2 28%, #f6f1ea 44%, #f8f4ec 58%, var(--bg-alt) 88%, var(--bg-alt) 100%); text-align:center; padding:clamp(4.5rem, 9vw, 7rem) clamp(4%, 5vw, 6%); position:relative; }
+        .cta-section::before { content:''; position:absolute; top:0; left:0; right:0; height:min(8rem, 22vh); pointer-events:none; background:linear-gradient(180deg, rgba(58,48,44,0.045), rgba(58,48,44,0.018) 55%, transparent 100%); }
+        .cta-section::after { content:''; position:absolute; bottom:0; left:0; right:0; height:min(45vh, 380px); pointer-events:none; background:radial-gradient(ellipse 80% 70% at 50% 100%, rgba(201,169,110,0.07), transparent 62%); }
+        .cta-wrap { position:relative; z-index:1; max-width:min(42rem, 100%); margin:0 auto; padding:0 clamp(0.5rem, 2vw, 1rem); }
+        .cta-title { font-family:'Playfair Display',serif; font-size:clamp(1.55rem,1.8vw + 0.9rem,2.4rem); font-weight:400; line-height:1.38; color:var(--text); margin-bottom:0.85rem; text-wrap:balance; letter-spacing:0.01em; }
+        .cta-title i { font-style:italic; color:var(--primary); }
+        .cta-subtitle { font-family:'Lato',sans-serif; font-size:clamp(1.05rem,0.4vw + 0.95rem,1.3rem); font-weight:600; color:var(--primary-dark); margin-bottom:2.25rem; letter-spacing:0.02em; }
+        .cta-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; }
+        .cta-btn-email { background:transparent; border:2px solid var(--primary); color:var(--primary) !important; border-radius:30px; padding:0.85rem 1.8rem; box-shadow:none; }
+        .cta-btn-email:hover { background:var(--primary); color:#fff !important; }
+
+        /* Floating WhatsApp FAB */
+        .wpp-fab { position:fixed; bottom:1.75rem; right:1.75rem; z-index:998; width:3.5rem; height:3.5rem; border-radius:50%; background:linear-gradient(165deg, #2dd36f, #25D366); color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 28px rgba(37,211,102,0.42), 0 0 0 1px rgba(255,255,255,0.2) inset; transition:transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out); text-decoration:none; }
+        .wpp-fab:hover { transform:scale(1.06); box-shadow:0 12px 36px rgba(37,211,102,0.5); color:#fff; }
+        .wpp-fab svg { width:1.65rem; height:1.65rem; flex-shrink:0; }
+
+        footer { background:linear-gradient(180deg, #2a2420 0%, var(--text) 100%); color:#fff; padding:4rem 5% 2rem; text-align:center; border-top:1px solid rgba(201,169,110,0.15); box-shadow:inset 0 1px 0 rgba(255,255,255,0.04); }
+        .footer-logo { font-family:'Playfair Display',serif; font-size:2rem; color:#fff; text-decoration:none; display:inline-block; margin-bottom:1.5rem; transition:color 0.3s ease, opacity 0.3s ease; }
+        .footer-logo:hover { color:rgba(255,255,255,0.88); opacity:0.95; }
+        .footer-bottom { font-size:0.8rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; margin-top:2rem; }
+
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+        
+        @media(max-width:992px) {
+            .hero-shell { padding:clamp(1.5rem,4vw,2.5rem) 0 clamp(2rem,5vw,3rem); }
+            .hero-ornament--1 { width:min(70vw, 380px); height:min(70vw, 380px); top:-12%; right:-15%; opacity:0.75; }
+            .hero-ornament--2 { width:min(55vw, 240px); height:min(55vw, 240px); bottom:2%; left:-12%; opacity:0.65; }
+            .hero-split { grid-template-columns:1fr; text-align:center; padding-top:4rem; gap:2rem; }
+            .hero-text { margin-inline:auto; }
+            .hero-title { font-size:clamp(1.75rem,5vw + 0.85rem,2.85rem); }
+            .hero-title-main, .hero-title-accent { text-align:center; margin-inline:auto; }
+            .hero-text p { margin-inline:auto; max-width:min(32em,100%); }
+            .hero-image { height:400px; clip-path:url(#hero-photo-blob-mobile); -webkit-clip-path:url(#hero-photo-blob-mobile); order:-1; }
+            .help-split { grid-template-columns:1fr; }
+            .help-list.text-right .help-card { text-align:left; }
+            .help-list.text-right .help-card::after { left:auto; right:-22%; }
+            .help-image { height:400px; border-radius:20px; order:-1; }
+            .about-split { flex-direction:column; text-align:left; }
+            .about-media { width:100%; height:400px; border-radius:20px; }
+            .about-media img { object-position:center 40%; }
+            .services-grid { grid-template-columns:1fr; gap:2px; }
+            .section-heading { font-size:clamp(1.85rem,4.5vw + 0.75rem,2.65rem); letter-spacing:0.04em; }
+            .nav-links { display:none; }
+            .logo { align-items:center; text-align:center; }
+            .logo-tagline { text-align:center; }
+        }
+        @media (max-width:1200px) and (min-width:993px) {
+            .nav-links { gap:clamp(0.5rem,1.2vw,1.25rem); }
+        }
+    </style>
 </head>
 <body>
+    <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+        <defs>
+            <!-- Portrait blob: irregular undulations (not ellipse); coords 0–1 for objectBoundingBox -->
+            <clipPath id="hero-photo-blob" clipPathUnits="objectBoundingBox">
+                <path d="M0.42,0.05 C0.62,0.02,0.88,0.12,0.94,0.32 C0.98,0.42,0.96,0.52,0.92,0.65 C0.85,0.82,0.68,0.96,0.48,0.97 C0.28,0.98,0.08,0.85,0.04,0.62 C0.02,0.48,0.06,0.32,0.18,0.18 C0.24,0.1,0.32,0.07,0.42,0.05 Z"/>
+            </clipPath>
+            <clipPath id="hero-photo-blob-mobile" clipPathUnits="objectBoundingBox">
+                <path d="M0.45,0.08 C0.68,0.04,0.92,0.22,0.94,0.42 C0.96,0.55,0.9,0.72,0.78,0.84 C0.62,0.96,0.38,0.97,0.22,0.88 C0.08,0.78,0.02,0.55,0.06,0.35 C0.1,0.18,0.28,0.08,0.45,0.08 Z"/>
+            </clipPath>
+        </defs>
+    </svg>
     <nav>
-        <div class="logo">
-            <i data-feather="heart"></i> Beatriz Baptista
+        <div class="nav-start">
+            <button type="button" class="nav-menu-toggle" id="nav-menu-toggle" aria-expanded="false" aria-controls="nav-section-panel" aria-label="Abrir menu de seções">
+                <i data-feather="menu" class="icon-menu" aria-hidden="true"></i>
+                <i data-feather="x" class="icon-close" aria-hidden="true"></i>
+            </button>
+            <a href="#inicio" class="logo"><span class="logo-name">Beatriz Batista</span><span class="logo-tagline">Psicóloga Clínica e&nbsp;Perinatal</span></a>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html" class="active">Início</a></li>
-            <li><a href="about.html">Sobre mim</a></li>
-            <li><a href="services.html">Serviços</a></li>
-            <li><a href="resources.html">Recursos</a></li>
-            <li><a href="contact.html">Contato</a></li>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#para-quem">Para Quem É</a></li>
+            <li><a href="#terapia">A Terapia</a></li>
+            <li><a href="#quem-sou">Quem Sou Eu</a></li>
+            <li><a href="#contato-section">Contato</a></li>
         </ul>
-        <a href="contact.html" class="btn">Agendar Sessão</a>
     </nav>
 
-    <main class="container">
-        <section class="hero animate">
-            <div class="hero-content">
-                <h1>Acolhimento humanizado para cada etapa da sua maternidade.</h1>
-                <p>Ofereço um espaço seguro para que possamos navegar juntas pelas emoções da gestação, parto, puerpério e os primeiros anos da maternidade.</p>
-                <div style="display:flex; gap:1rem;">
-                    <a href="about.html" class="btn btn-outline">Conheça minha abordagem</a>
-                    <a href="contact.html" class="btn">Fale Comigo</a>
-                </div>
-            </div>
-            <!-- Ideal for a gentle image like variant 1 -->
-            <div style="flex:1; margin-left: 2rem;" class="img-placeholder">
-                [Imagem de Acolhimento]
-            </div>
-        </section>
+    <div class="nav-menu-backdrop" id="nav-menu-backdrop" aria-hidden="true"></div>
+    <aside class="nav-menu-panel" id="nav-section-panel" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="nav-panel-title">
+        <div class="nav-menu-panel-head">
+            <span id="nav-panel-title">Navegação</span>
+            <button type="button" class="nav-menu-close" id="nav-menu-close" aria-label="Fechar menu"><i data-feather="x"></i></button>
+        </div>
+        <ul class="nav-menu-list">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#para-quem">Para quem é</a></li>
+            <li><a href="#terapia">A Terapia</a></li>
+            <li><a href="#eu-ajudo">Eu te ajudo a</a></li>
+            <li><a href="#quem-sou">Quem sou eu</a></li>
+            <li><a href="#contato-section">Contato</a></li>
+        </ul>
+    </aside>
 
-        <section class="section animate" style="animation-delay: 0.2s">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-                <h2>Nossa Abordagem</h2>
-                <p>O foco do meu trabalho é oferecer sustentação emocional durante as imensas transições que as mães vivenciam, trazendo validação e ferramentas para uma maternidade mais leve.</p>
-            </div>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon"><i data-feather="sun"></i></div>
-                    <h3>Gestação Consciente</h3>
-                    <p>Espaço para falar sobre expectativas, medos comuns e o preparo emocional para a chegada do bebê e o momento do parto.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i data-feather="cloud-rain"></i></div>
-                    <h3>Suporte no Puerpério</h3>
-                    <p>Apoio na fase de maior reestruturação da identidade. Acolhemos o cansaço, os lutos invisíveis e a readaptação familiar.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i data-feather="users"></i></div>
-                    <h3>Criação e Vínculo</h3>
-                    <p>Orientação sobre a construção do vínculo inicial e desafios emocionais da primeira infância sob a ótica materna.</p>
-                </div>
-            </div>
+    <!-- HERO -->
+    <div class="hero-shell" id="inicio">
+        <span class="hero-ornament hero-ornament--1" aria-hidden="true"></span>
+        <span class="hero-ornament hero-ornament--2" aria-hidden="true"></span>
+        <section class="hero-split">
+        <div class="hero-text">
+            <h1 class="hero-title">
+                <span class="hero-title-main">Cuidando de você em <i>todas</i> as etapas da</span>
+                <span class="hero-title-accent">MATERNIDADE</span>
+            </h1>
+            <p>Porque cuidar de quem cuida também é essencial.</p>
+            <a href="https://wa.me/19984099345" target="_blank" rel="noopener" class="btn btn-wpp" id="contato"><svg class="icon-wpp" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Entre em Contato</a>
+        </div>
+        <div class="hero-image">
+            <img src="/hero-beatriz.png" alt="Beatriz Batista" style="width:100%; height:100%; object-fit:cover;">
+        </div>
         </section>
-    </main>
+    </div>
 
-    <footer>
-        <div class="container footer-content">
-            <div>
-                <div class="footer-logo">Beatriz Baptista</div>
-                <p class="footer-text">Psicóloga focada em perinatalidade e maternidade. Acolhendo mães pelo Brasil e pelo mundo através do atendimento online.</p>
+    <!-- Faixa de fusão: só gradiente (sem curva = sem “risquinho” no meio) -->
+    <div class="section-wave section-wave--hero-tail section-wave--soft" aria-hidden="true">
+        <svg class="wave-shadow" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="waveGradHero" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f5efe6"/>
+                    <stop offset="32%" stop-color="#f5f0e7"/>
+                    <stop offset="66%" stop-color="#f5f0e6"/>
+                    <stop offset="100%" stop-color="#f5f0e6"/>
+                </linearGradient>
+            </defs>
+            <rect width="1440" height="120" fill="url(#waveGradHero)"/>
+        </svg>
+    </div>
+
+    <!-- PARA QUEM É -->
+    <section class="section" id="para-quem">
+        <div class="section-header section-header--narrow">
+            <h2 class="section-heading">Para quem é?</h2>
+            <p class="section-lede">Para mulheres e famílias que <i>experienciam</i>:</p>
+        </div>
+        <div class="cards-grid5">
+             <div class="card-box">
+                <div class="card-box-icon" aria-hidden="true">
+                    <svg class="card-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 3.5h6a1.5 1.5 0 0 1 1.5 1.5v14a2.5 2.5 0 0 1-2.5 2.5h-4A2.5 2.5 0 0 1 7.5 19V5A1.5 1.5 0 0 1 9 3.5Z"/>
+                        <rect x="10.25" y="6" width="3.5" height="8" rx="0.65" fill="rgba(201,169,110,0.12)" stroke="currentColor"/>
+                        <line x1="11.1" y1="8" x2="12.9" y2="8" stroke-width="1.2"/>
+                        <line x1="11.1" y1="10.8" x2="12.9" y2="10.8" stroke-width="1.2"/>
+                        <path d="M11 21.5h2" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <p>Dificuldade de <b>engravidar</b> e tratamento de <b>infertilidade</b>.</p>
+             </div>
+             <div class="card-box">
+                <div class="card-box-icon"><i data-feather="cloud-rain"></i></div>
+                <p><b>Ansiedade e medos</b> na gravidez, incluindo o tão temido parto.</p>
+             </div>
+             <div class="card-box">
+                <div class="card-box-icon"><i data-feather="activity"></i></div>
+                <p><b>Luto</b> gestacional ou perinatal.</p>
+             </div>
+             <div class="card-box">
+                <div class="card-box-icon"><i data-feather="target"></i></div>
+                <p>Desafios do <b>puerpério</b>, perda de identidade e retorno ao mercado de trabalho.</p>
+             </div>
+             <div class="card-box">
+                <div class="card-box-icon"><i data-feather="users"></i></div>
+                <p><b>Conflitos conjugais</b> após a chegada do bebê.</p>
+             </div>
+        </div>
+    </section>
+
+    <div class="section-wave section-wave--between section-wave--soft" aria-hidden="true">
+        <svg class="wave-shadow" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="waveGradAltToBg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f5f0e6"/>
+                    <stop offset="22%" stop-color="#f5f1e7"/>
+                    <stop offset="42%" stop-color="#f7f3ea"/>
+                    <stop offset="62%" stop-color="#f8f5ee"/>
+                    <stop offset="82%" stop-color="#f9f7f1"/>
+                    <stop offset="100%" stop-color="#faf7f2"/>
+                </linearGradient>
+            </defs>
+            <rect width="1440" height="120" fill="url(#waveGradAltToBg)"/>
+        </svg>
+    </div>
+
+    <!-- A TERAPIA -->
+    <section class="section section--wave-next" id="terapia">
+        <div class="section-header">
+            <h2 class="section-heading">A Terapia</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon"><i data-feather="globe" style="width:100%;height:100%;"></i></div>
+                <h3>100% Online</h3>
+                <p>Atendimento online, no conforto do seu lar, no Brasil e no mundo.</p>
             </div>
-            <div class="footer-links">
-                <h4>Navegação</h4>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="about.html">Sobre mim</a></li>
-                    <li><a href="services.html">Meus Serviços</a></li>
-                </ul>
+            <div class="service-card">
+                <div class="icon"><i data-feather="file-text" style="width:100%;height:100%;"></i></div>
+                <h3>TCC</h3>
+                <p>Estruturado com base na Terapia Cognitivo-Comportamental.</p>
             </div>
-            <div class="footer-links">
-                <h4>Contato</h4>
-                <ul>
-                    <li><i data-feather="instagram" style="margin-right: 8px;"></i> @psibeatrizbaptista</li>
-                    <li><i data-feather="mail" style="margin-right: 8px;"></i> contato@beatrizbaptista.com.br</li>
-                    <li><br/><a href="contact.html" class="btn btn-outline" style="color: white; border-color: white">Fale no WhatsApp</a></li>
-                </ul>
+            <div class="service-card">
+                <div class="icon"><i data-feather="heart" style="width:100%;height:100%;"></i></div>
+                <h3>Acolhimento</h3>
+                <p>Um espaço seguro para você cuidar da sua saúde mental e seu bem-estar.</p>
             </div>
         </div>
+    </section>
+
+    <div class="section-wave section-wave--between section-wave--soft" aria-hidden="true">
+        <svg class="wave-shadow" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="waveGradBgToAlt" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#faf7f2"/>
+                    <stop offset="24%" stop-color="#f9f6f0"/>
+                    <stop offset="48%" stop-color="#f8f4ec"/>
+                    <stop offset="72%" stop-color="#f6f1e8"/>
+                    <stop offset="100%" stop-color="#f5f0e6"/>
+                </linearGradient>
+            </defs>
+            <rect width="1440" height="120" fill="url(#waveGradBgToAlt)"/>
+        </svg>
+    </div>
+
+    <!-- EU TE AJUDO A -->
+    <section class="section section--wave-next" id="eu-ajudo">
+        <div class="section-header">
+            <h2 class="section-heading">Eu te ajudo a</h2>
+        </div>
+        <div class="help-split">
+            <div class="help-list text-right">
+                <article class="help-card">
+                    <p class="help-card-text">Desenvolver estratégias para lidar com a <b>ansiedade</b> e o estresse</p>
+                </article>
+                <article class="help-card">
+                    <p class="help-card-text">Reconhecer e tratar sintomas de <b>depressão pós-parto</b></p>
+                </article>
+                <article class="help-card">
+                    <p class="help-card-text"><b>Resignificar</b> experiências traumáticas e crenças disfuncionais</p>
+                </article>
+            </div>
+            <div class="help-image">
+                <img src="/eu-ajudo-beatriz.png" alt="Beatriz Batista — psicóloga clínica e perinatal" width="800" height="1100" loading="lazy" decoding="async">
+            </div>
+            <div class="help-list text-left">
+                <article class="help-card">
+                    <p class="help-card-text">Fortalecer o <b>vínculo</b> com seu bebê e com seu parceiro(a)</p>
+                </article>
+                <article class="help-card">
+                    <p class="help-card-text">(Re)construir autoconfiança e a <b>identidade</b> depois da maternidade</p>
+                </article>
+                <article class="help-card">
+                    <p class="help-card-text">Navegar pelos questionamentos sobre <b>maternidade x carreira</b></p>
+                </article>
+            </div>
+        </div>
+        <div class="help-cta">
+            <a href="https://wa.me/19984099345" target="_blank" rel="noopener" class="btn btn-wpp"><svg class="icon-wpp" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Entre em Contato</a>
+        </div>
+    </section>
+
+    <div class="section-wave section-wave--to-dark" aria-hidden="true">
+        <svg class="wave-shadow" viewBox="0 0 1440 240" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="waveGradAltToDark" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f5f0e6"/>
+                    <stop offset="10%" stop-color="#f3ece3"/>
+                    <stop offset="22%" stop-color="#ece3d8"/>
+                    <stop offset="34%" stop-color="#dfd2c6"/>
+                    <stop offset="46%" stop-color="#cabaae"/>
+                    <stop offset="55%" stop-color="#aa9a91"/>
+                    <stop offset="64%" stop-color="#8a7d76"/>
+                    <stop offset="72%" stop-color="#6c625d"/>
+                    <stop offset="79%" stop-color="#5a524d"/>
+                    <stop offset="86%" stop-color="#4a4340"/>
+                    <stop offset="91%" stop-color="#423b38"/>
+                    <stop offset="96%" stop-color="#3c3430"/>
+                    <stop offset="100%" stop-color="#3c3430"/>
+                </linearGradient>
+            </defs>
+            <rect width="1440" height="240" fill="url(#waveGradAltToDark)"/>
+        </svg>
+    </div>
+
+    <!-- QUEM SOU EU -->
+    <section class="section section--wave-next" id="quem-sou">
+        <div class="about-split">
+            <div class="about-content">
+                <div class="section-header section-header--left">
+                    <h2 class="section-heading">Quem sou eu?</h2>
+                </div>
+                <ul class="about-list">
+                    <li>
+                        <span class="about-icon" aria-hidden="true"><i data-feather="award"></i></span>
+                        <span><b>Psicóloga formada</b> pela Universidade Federal de São Carlos (UFSCar) - CRP 06/194459</span>
+                    </li>
+                    <li>
+                        <span class="about-icon" aria-hidden="true"><i data-feather="award"></i></span>
+                        <span><b>Especialista</b> em Terapia Cognitivo-Comportamental (TCC)</span>
+                    </li>
+                    <li>
+                        <span class="about-icon" aria-hidden="true"><i data-feather="award"></i></span>
+                        <span><b>Especialista</b> em Psicologia Perinatal</span>
+                    </li>
+                </ul>
+                <div style="margin-bottom:2rem;">
+                    <p class="about-text-p">
+                        <span class="about-icon" aria-hidden="true"><i data-feather="target"></i></span>
+                        <span class="about-text-p-inner">Como psicóloga, meu propósito é <b>guiar</b> e <b>acolher</b> mulheres que vivenciam as complexidades da <i>maternidade</i>, desde o <b>planejamento</b> até o <b>pós-natal</b>.</span>
+                    </p>
+                    <p class="about-text-p">
+                        <span class="about-icon" aria-hidden="true"><i data-feather="heart"></i></span>
+                        <span class="about-text-p-inner">Acredito que a <i>maternidade</i> é uma experiência de imensa transformação, e meu trabalho é oferecer um <b>espaço seguro</b> para que essa etapa da vida seja vivida com mais <b>leveza, força e consciência</b>.</span>
+                    </p>
+                </div>
+                <div>
+                    <a href="https://wa.me/19984099345" target="_blank" rel="noopener" class="btn btn-wpp"><i data-feather="calendar"></i> Agende sua sessão</a>
+                </div>
+            </div>
+            <div class="about-media">
+                <img src="/quem-sou-beatriz.png" alt="Beatriz Batista — psicóloga clínica e perinatal" width="900" height="1200" loading="lazy" decoding="async">
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section cta-section" id="contato-section">
+        <div class="cta-wrap">
+            <h2 class="cta-title">Tomar a decisão de iniciar a terapia pode ser <i>desafiador</i> — e ao mesmo tempo um gesto importante de cuidado com você mesma(o).</h2>
+            <p class="cta-subtitle">Será um prazer te acompanhar nesse processo!</p>
+            <div class="cta-actions">
+                <a href="https://wa.me/19984099345" target="_blank" rel="noopener" class="btn btn-wpp"><svg class="icon-wpp" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Fale comigo</a>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/19984099345" target="_blank" rel="noopener" class="wpp-fab" aria-label="Fale pelo WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+    <footer id="rodape">
+        <a href="#" class="footer-logo">Beatriz Batista</a>
         <div class="footer-bottom">
-            <p>&copy; 2026 Beatriz Baptista Psicologia. Todos os direitos reservados.</p>
+            &copy; 2026 Beatriz Batista. Psicóloga Clínica e Perinatal. Todos os direitos reservados.
         </div>
     </footer>
 
     <script>
       feather.replace();
+      (function () {
+        var toggle = document.getElementById('nav-menu-toggle');
+        var backdrop = document.getElementById('nav-menu-backdrop');
+        var panel = document.getElementById('nav-section-panel');
+        var closeBtn = document.getElementById('nav-menu-close');
+        if (!toggle || !backdrop || !panel) return;
+
+        function openMenu() {
+          backdrop.classList.add('is-open');
+          panel.classList.add('is-open');
+          panel.setAttribute('aria-hidden', 'false');
+          backdrop.setAttribute('aria-hidden', 'false');
+          toggle.setAttribute('aria-expanded', 'true');
+          document.body.classList.add('menu-open');
+        }
+
+        function closeMenu() {
+          backdrop.classList.remove('is-open');
+          panel.classList.remove('is-open');
+          panel.setAttribute('aria-hidden', 'true');
+          backdrop.setAttribute('aria-hidden', 'true');
+          toggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('menu-open');
+        }
+
+        function toggleMenu() {
+          if (toggle.getAttribute('aria-expanded') === 'true') closeMenu();
+          else openMenu();
+        }
+
+        toggle.addEventListener('click', toggleMenu);
+        backdrop.addEventListener('click', closeMenu);
+        if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeMenu();
+        });
+        panel.querySelectorAll('a[href^="#"]').forEach(function (link) {
+          link.addEventListener('click', function () {
+            closeMenu();
+          });
+        });
+      })();
     </script>
 </body>
 </html>
