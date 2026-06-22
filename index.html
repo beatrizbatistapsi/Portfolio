@@ -100,7 +100,7 @@
         .nav-menu-social .social-link:hover { background:rgba(201,169,110,0.14); color:var(--primary-dark); transform:none; }
         .nav-menu-social .social-link svg, .nav-menu-social .social-link .feather { width:16px; height:16px; }
         
-        .btn { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; padding:1rem 2.5rem; background:var(--primary); color:#fff; text-decoration:none; transition:all 0.4s; border:none; font-family:'Lato',sans-serif; font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; cursor:pointer; position:relative; overflow:hidden; }
+        .btn { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; padding:1.05rem 2.75rem; background:var(--primary); color:#fff; text-decoration:none; transition:all 0.4s var(--ease-out); border:none; font-family:'Lato',sans-serif; font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:2.2px; cursor:pointer; position:relative; overflow:hidden; }
         .btn::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); transition:left 0.7s; }
         .btn:hover { background:var(--primary-dark); }
         .btn:hover::before { left:100%; }
@@ -145,7 +145,7 @@
 
         .section.section--wave-next { padding-top:clamp(3rem, 5vw, 4.25rem); }
 
-        .section { padding:clamp(4.5rem, 8vw, 6.5rem) clamp(4%, 5vw, 6%); position:relative; }
+        .section { padding:clamp(5.5rem, 9vw, 8rem) clamp(4%, 5vw, 6%); position:relative; }
         #para-quem { background:var(--bg-alt); padding-top:clamp(2rem, 3.5vw, 2.75rem); }
         #para-quem::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 70% 45% at 50% 0%, rgba(201,169,110,0.06), transparent 58%); z-index:0; }
         #para-quem .section-header, #para-quem .cards-grid5 { position:relative; z-index:1; }
@@ -192,7 +192,42 @@
         .service-card:hover { background:var(--surface); }
         .service-card .icon { width:42px; height:42px; margin:0 auto 1.75rem; color:var(--primary); opacity:0.95; }
         .service-card h3 { font-size:clamp(1.15rem, 0.5vw + 1rem, 1.4rem); margin-bottom:0.85rem; text-transform:uppercase; letter-spacing:0.14em; font-family:'Lato',sans-serif; font-weight:700; color:var(--text); }
-        .service-card p { color:var(--text-light); font-size:0.96rem; line-height:1.82; margin-bottom:0; font-weight:300; max-width:26ch; margin-inline:auto; }
+        .service-card p { color:var(--text-light); font-size:0.96rem; line-height:1.82; margin-bottom:0; font-weight:300; max-width:32ch; margin-inline:auto; }
+
+        /* Como funciona — passos do processo */
+        .process-block { max-width:1200px; margin:clamp(3.5rem,6vw,5rem) auto 0; position:relative; z-index:1; }
+        .process-header { text-align:center; margin-bottom:clamp(2.25rem,4vw,3.25rem); }
+        .process-eyebrow { display:block; font-size:0.78rem; text-transform:uppercase; letter-spacing:3.5px; color:var(--primary); font-family:'Lato',sans-serif; font-weight:700; margin-bottom:0.85rem; }
+        .process-title { font-family:'Playfair Display',serif; font-size:clamp(1.5rem,1.5vw + 0.85rem,2.1rem); font-weight:400; color:var(--text); margin:0 0 0.6rem; text-wrap:balance; letter-spacing:0.01em; }
+        .process-title i { font-style:italic; color:var(--primary); }
+        .process-lede { font-family:'Lato',sans-serif; font-size:clamp(0.98rem,0.35vw + 0.88rem,1.15rem); color:var(--text-light); margin:0; max-width:38em; margin-inline:auto; line-height:1.55; }
+        .process-steps { display:grid; grid-template-columns:repeat(4, 1fr); gap:clamp(1rem,1.8vw,1.5rem); position:relative; }
+        .process-steps::before { content:''; position:absolute; top:34px; left:8%; right:8%; height:1px; background:linear-gradient(90deg, transparent, rgba(201,169,110,0.35) 12%, rgba(201,169,110,0.45) 50%, rgba(201,169,110,0.35) 88%, transparent); z-index:0; }
+        .process-step { position:relative; text-align:center; padding:0 0.5rem; z-index:1; }
+        .process-step-num { width:68px; height:68px; margin:0 auto 1.25rem; border-radius:50%; background:linear-gradient(155deg, #ffffff 0%, #fbf7ef 100%); border:1px solid rgba(201,169,110,0.32); display:flex; align-items:center; justify-content:center; color:var(--primary-dark); box-shadow:0 6px 18px rgba(58,48,44,0.08), inset 0 1px 0 rgba(255,255,255,0.9); position:relative; }
+        .process-step-num::after { content:attr(data-step); position:absolute; top:-6px; right:-6px; width:24px; height:24px; border-radius:50%; background:linear-gradient(155deg, var(--primary) 0%, var(--primary-dark) 100%); color:#fff; font-family:'Playfair Display',serif; font-size:0.85rem; font-weight:600; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(201,169,110,0.42); }
+        .process-step-num .feather { width:26px; height:26px; stroke-width:1.5; }
+        .process-step h4 { font-family:'Playfair Display',serif; font-size:clamp(1.05rem,0.4vw + 0.95rem,1.22rem); font-weight:500; color:var(--text); margin:0 0 0.6rem; letter-spacing:0.01em; }
+        .process-step p { font-size:0.94rem; line-height:1.62; color:var(--text-light); margin:0; max-width:24ch; margin-inline:auto; font-weight:400; }
+
+        /* FAQ */
+        #faq { background:var(--bg); }
+        #faq::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 65% 40% at 50% 0%, rgba(201,169,110,0.045), transparent 60%); z-index:0; }
+        #faq .section-header, #faq .faq-list { position:relative; z-index:1; }
+        .faq-list { max-width:780px; margin:0 auto; display:flex; flex-direction:column; gap:1rem; }
+        .faq-item { background:linear-gradient(158deg, var(--surface) 0%, rgba(255,255,255,0.97) 60%, rgba(252,249,244,0.94) 100%); border:1px solid rgba(201,169,110,0.18); border-radius:14px; box-shadow:var(--shadow-soft); overflow:hidden; transition:box-shadow 0.4s var(--ease-out), border-color 0.35s; }
+        .faq-item[open] { box-shadow:var(--shadow-lift); border-color:rgba(201,169,110,0.32); }
+        .faq-item summary { list-style:none; cursor:pointer; padding:1.35rem 1.65rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-family:'Playfair Display',serif; font-size:clamp(1.02rem,0.35vw + 0.9rem,1.18rem); font-weight:500; color:var(--text); letter-spacing:0.01em; transition:color 0.3s; }
+        .faq-item summary::-webkit-details-marker { display:none; }
+        .faq-item summary:hover { color:var(--primary-dark); }
+        .faq-icon { flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(201,169,110,0.12); border:1px solid rgba(201,169,110,0.25); display:flex; align-items:center; justify-content:center; color:var(--primary-dark); transition:transform 0.35s var(--ease-out), background 0.3s; }
+        .faq-icon::before, .faq-icon::after { content:''; position:absolute; width:11px; height:1.5px; background:currentColor; border-radius:2px; }
+        .faq-icon::after { transform:rotate(90deg); transition:transform 0.35s var(--ease-out); }
+        .faq-icon { position:relative; }
+        .faq-item[open] .faq-icon { background:var(--primary); color:#fff; border-color:var(--primary); }
+        .faq-item[open] .faq-icon::after { transform:rotate(0deg); }
+        .faq-answer { padding:0 1.65rem 1.45rem; font-family:'Lato',sans-serif; font-size:1rem; line-height:1.72; color:var(--text-light); margin:0; max-width:62ch; }
+        .faq-answer b { color:var(--text); font-weight:700; }
 
         .help-split { display:grid; grid-template-columns:1fr 400px 1fr; gap:clamp(1.5rem,2.5vw,2.25rem); align-items:center; max-width:1200px; margin:0 auto; }
         .help-list { display:flex; flex-direction:column; gap:clamp(0.85rem,1.5vw,1.15rem); }
@@ -254,6 +289,24 @@
 
         @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
         @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+        /* Scroll reveal — entrada elegante e coreografada */
+        .reveal { opacity:0; transform:translateY(28px); transition:opacity 1.05s var(--ease-out), transform 1.05s var(--ease-out); will-change:opacity,transform; }
+        .reveal.is-visible { opacity:1; transform:translateY(0); }
+        .reveal-delay-1 { transition-delay:0.08s; }
+        .reveal-delay-2 { transition-delay:0.16s; }
+        .reveal-delay-3 { transition-delay:0.24s; }
+        .reveal-delay-4 { transition-delay:0.32s; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+
+        /* Ornamento minimalista — •—— ouro —— • */
+        .ornament { display:flex; align-items:center; justify-content:center; gap:0.85rem; margin:0 auto 1.5rem; max-width:14rem; opacity:0.85; }
+        .ornament::before, .ornament::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, transparent, rgba(201,169,110,0.55), transparent); }
+        .ornament-dot { width:7px; height:7px; border-radius:50%; background:linear-gradient(155deg, var(--primary), var(--primary-dark)); box-shadow:0 0 0 3px rgba(201,169,110,0.12); flex-shrink:0; }
+
+        /* Eyebrow — etiqueta sutil acima dos títulos */
+        .eyebrow { display:inline-block; font-family:'Lato',sans-serif; font-size:0.72rem; text-transform:uppercase; letter-spacing:4px; color:var(--primary-dark); font-weight:700; margin-bottom:1.15rem; padding:0.4rem 1rem; border:1px solid rgba(201,169,110,0.32); border-radius:30px; background:rgba(255,255,255,0.55); backdrop-filter:blur(4px); }
+        .eyebrow--dark { color:var(--primary); background:rgba(201,169,110,0.08); border-color:rgba(201,169,110,0.32); }
         
         @media(max-width:992px) {
             .hero-shell { padding:clamp(1.5rem,4vw,2.5rem) 0 clamp(2rem,5vw,3rem); }
@@ -275,6 +328,10 @@
             .about-media { width:min(85vw, 340px); height:min(85vw, 340px); border-radius:50%; }
             .about-media img { object-position:center 35%; }
             .services-grid { grid-template-columns:1fr; gap:2px; }
+            .process-steps { grid-template-columns:repeat(2, 1fr); gap:2rem 1rem; }
+            .process-steps::before { display:none; }
+            .faq-item summary { padding:1.15rem 1.35rem; }
+            .faq-answer { padding:0 1.35rem 1.25rem; }
             .section-heading { font-size:clamp(1.85rem,4.5vw + 0.75rem,2.65rem); letter-spacing:0.04em; }
             .nav-links { display:none; }
             .logo { align-items:center; text-align:center; }
@@ -285,6 +342,7 @@
             .hero-image img { object-position:center 20%; }
             .help-image { width:min(80vw, 300px); }
             .about-media { width:min(75vw, 280px); height:min(75vw, 280px); }
+            .process-steps { grid-template-columns:1fr; gap:1.75rem; }
         }
         @media (max-width:1200px) and (min-width:993px) {
             .nav-links { gap:clamp(0.5rem,1.2vw,1.25rem); }
@@ -317,6 +375,7 @@
                 <li><a href="#para-quem">Para Quem É</a></li>
                 <li><a href="#terapia">A Terapia</a></li>
                 <li><a href="#quem-sou">Quem Sou Eu</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contato-section">Contato</a></li>
             </ul>
             <div class="nav-social" aria-label="Redes sociais e contato">
@@ -339,6 +398,7 @@
             <li><a href="#terapia">A Terapia</a></li>
             <li><a href="#eu-ajudo">Eu te ajudo a</a></li>
             <li><a href="#quem-sou">Quem sou eu</a></li>
+            <li><a href="#faq">FAQ</a></li>
             <li><a href="#contato-section">Contato</a></li>
         </ul>
         <div class="nav-menu-social">
@@ -389,7 +449,8 @@
 
     <!-- PARA QUEM É -->
     <section class="section" id="para-quem">
-        <div class="section-header section-header--narrow">
+        <div class="section-header section-header--narrow reveal">
+            <span class="eyebrow">Foco do meu trabalho</span>
             <h2 class="section-heading">Para quem é?</h2>
             <p class="section-lede">Para mulheres e famílias que <i>experienciam</i>:</p>
         </div>
@@ -447,24 +508,56 @@
 
     <!-- A TERAPIA -->
     <section class="section section--wave-next" id="terapia">
-        <div class="section-header">
+        <div class="section-header reveal">
+            <span class="eyebrow">Como eu cuido de você</span>
             <h2 class="section-heading">A Terapia</h2>
+            <p class="section-lede">Um processo <i>colaborativo</i>, acolhedor e baseado em evidências — pensado para caminhar com você.</p>
         </div>
         <div class="services-grid">
             <div class="service-card">
                 <div class="icon"><i data-feather="globe" style="width:100%;height:100%;"></i></div>
                 <h3>100% Online</h3>
-                <p>Atendimento online, no conforto do seu lar, no Brasil e no mundo.</p>
-            </div>
-            <div class="service-card">
-                <div class="icon"><i data-feather="file-text" style="width:100%;height:100%;"></i></div>
-                <h3>TCC</h3>
-                <p>Estruturado com base na Terapia Cognitivo-Comportamental.</p>
+                <p>Atendimento online, no conforto do seu lar — no Brasil e no mundo.</p>
             </div>
             <div class="service-card">
                 <div class="icon"><i data-feather="heart" style="width:100%;height:100%;"></i></div>
-                <h3>Acolhimento</h3>
-                <p>Um espaço seguro para você cuidar da sua saúde mental e seu bem-estar.</p>
+                <h3>TCC</h3>
+                <p>Uma abordagem <b>colaborativa e acolhedora</b>, com intervenções <b>validadas cientificamente</b> que unem ciência e cuidado para gerar mudanças reais no seu dia a dia.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon"><i data-feather="shield" style="width:100%;height:100%;"></i></div>
+                <h3>Sigilo &amp; Ética</h3>
+                <p>Compromisso total com o sigilo profissional, regulamentado pelo Conselho Federal de Psicologia.</p>
+            </div>
+        </div>
+
+        <div class="process-block">
+            <div class="process-header">
+                <span class="process-eyebrow">Como funciona</span>
+                <h3 class="process-title">Um caminho <i>simples e acolhedor</i> para você começar</h3>
+                <p class="process-lede">Da primeira conversa ao acompanhamento contínuo, cada passo foi pensado para que você se sinta segura.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-num" data-step="1"><i data-feather="message-circle"></i></div>
+                    <h4>Primeiro contato</h4>
+                    <p>Você me chama no WhatsApp e conversamos sobre o que está sentindo e o que busca na terapia. Sem compromisso.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num" data-step="2"><i data-feather="calendar"></i></div>
+                    <h4>Agendamento</h4>
+                    <p>Escolhemos juntas o melhor dia e horário para a sua primeira sessão, com flexibilidade para a sua rotina.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num" data-step="3"><i data-feather="video"></i></div>
+                    <h4>Sessão online</h4>
+                    <p>Atendimento de 50 minutos por videochamada em plataforma segura, no conforto e privacidade do seu lar.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num" data-step="4"><i data-feather="trending-up"></i></div>
+                    <h4>Acompanhamento contínuo</h4>
+                    <p>Construímos juntas um processo único, com <b>encontros semanais</b> — frequência ideal para um acompanhamento efetivo e resultados consistentes.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -486,7 +579,8 @@
 
     <!-- EU TE AJUDO A -->
     <section class="section section--wave-next" id="eu-ajudo">
-        <div class="section-header">
+        <div class="section-header reveal">
+            <span class="eyebrow">O que vamos transformar</span>
             <h2 class="section-heading">Eu te ajudo a</h2>
         </div>
         <div class="help-split">
@@ -548,7 +642,8 @@
     <section class="section section--wave-next" id="quem-sou">
         <div class="about-split">
             <div class="about-content">
-                <div class="section-header section-header--left">
+                <div class="section-header section-header--left reveal">
+                    <span class="eyebrow eyebrow--dark">Sobre mim</span>
                     <h2 class="section-heading">Quem sou eu?</h2>
                 </div>
                 <ul class="about-list">
@@ -585,6 +680,41 @@
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="section" id="faq">
+        <div class="section-header section-header--narrow reveal">
+            <span class="eyebrow">Dúvidas comuns</span>
+            <h2 class="section-heading">Perguntas frequentes</h2>
+            <p class="section-lede">Tire suas <i>dúvidas</i> antes de começar.</p>
+        </div>
+        <div class="faq-list">
+            <details class="faq-item">
+                <summary>Como funcionam as sessões online?<span class="faq-icon" aria-hidden="true"></span></summary>
+                <p class="faq-answer">Os atendimentos acontecem por videochamada em plataforma segura, com a mesma qualidade, sigilo e eficácia comprovada da terapia presencial. Você só precisa de um lugar tranquilo e uma boa conexão.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Qual a duração e a frequência das sessões?<span class="faq-icon" aria-hidden="true"></span></summary>
+                <p class="faq-answer">Cada sessão tem <b>50 minutos</b> e acontece <b>semanalmente</b>. A frequência semanal é fundamental para a continuidade do processo terapêutico, garantindo um acompanhamento efetivo e resultados consistentes ao longo do tempo.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Atende convênios? Como funciona o pagamento?<span class="faq-icon" aria-hidden="true"></span></summary>
+                <p class="faq-answer">O atendimento é particular. Emito recibo para reembolso junto ao seu plano de saúde quando aplicável. O pagamento é feito por Pix ou transferência.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Preciso ter um diagnóstico ou um problema "grave" para fazer terapia?<span class="faq-icon" aria-hidden="true"></span></summary>
+                <p class="faq-answer">Não. A terapia é para qualquer pessoa que queira se conhecer melhor, lidar com momentos difíceis ou cuidar da sua saúde emocional — especialmente nas fases que envolvem a maternidade.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Atende mulheres que moram fora do Brasil?<span class="faq-icon" aria-hidden="true"></span></summary>
+                <p class="faq-answer">Sim. Por ser 100% online, atendo brasileiras em qualquer lugar do mundo, respeitando o fuso horário para encontrarmos o melhor horário para você.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Tudo que eu falar na sessão é sigiloso?<span class="faq-icon" aria-hidden="true"></span></summary>
+                <p class="faq-answer">Sim, totalmente. O sigilo profissional é um pilar ético da psicologia, regulamentado pelo Conselho Federal de Psicologia. Tudo o que é compartilhado nas sessões permanece entre nós.</p>
+            </details>
+        </div>
+    </section>
+
     <!-- CONTATO -->
     <section class="section cta-section" id="contato-section">
         <div class="cta-wrap">
@@ -618,6 +748,31 @@
 
     <script>
       feather.replace();
+
+      /* Scroll reveal — coreografia premium */
+      (function () {
+        var els = document.querySelectorAll('.card-box, .service-card, .help-card, .process-step, .faq-item, .about-list li, .about-text-p');
+        els.forEach(function (el, i) {
+          el.classList.add('reveal');
+          var delay = (i % 4) * 80;
+          el.style.transitionDelay = delay + 'ms';
+        });
+
+        if (!('IntersectionObserver' in window)) {
+          document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      })();
+
       (function () {
         var toggle = document.getElementById('nav-menu-toggle');
         var backdrop = document.getElementById('nav-menu-backdrop');
